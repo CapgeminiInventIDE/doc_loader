@@ -19,7 +19,7 @@ doc_loader is a utility package for loading multiple types of documents in the f
 * General purpose document loader which accepts .png, .jpg, .jpeg, .pdf, .tiff, .tif formats and outputs list of either PIL (PILLOW) objects or list of numpy arrays
 * Handles Password Protected PDFS
 * Applies Exif Orientation to .jpg and .png images if present
-* Input: `fastapi.UploadFile`, `werkeug.FileStrorage` object or `str` (file path)
+* Input: `fastapi.UploadFile`, `werkeug.FileStorage` object or `str` (file path)
 * Output: List of images as PIL objects or numpy array
 
 ## Where to get it
