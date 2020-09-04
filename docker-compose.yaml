@@ -1,0 +1,9 @@
+version: "2"
+services:
+  doc-loader:
+    build: .
+    image: challisa/doc-loader
+    container_name: doc-loader
+    volumes:
+      - .:/opt/working
+    entrypoint: sleep 100000
