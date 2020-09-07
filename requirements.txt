@@ -4,3 +4,4 @@ Werkzeug==1.0.1
 numpy==1.18.2
 pytest==6.0.1
 pdf2image==1.14.0
+PyMuPDF==1.17.6

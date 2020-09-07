@@ -1,3 +1,6 @@
+import importlib
+from typing import Callable
+
 import numpy as np
 from PIL import Image
 
@@ -30,8 +33,6 @@ def apply_exif_orientation(image: Image.Image) -> Image.Image:
     # https://www.exiv2.org/tags.html
     _EXIF_ORIENT = 274  # exif 'Orientation' tag
 
-    # raise Exception(f"EXIF {exif}")
-
     orientation = exif.get(_EXIF_ORIENT)
 
     method = {
@@ -59,3 +60,37 @@ def pil_to_numpy(image: Image.Image) -> np.ndarray:
         np.ndarray: Image 
     """
     return np.asarray(image.convert("RGB"))
+
+
+def _optional_import_(module: str, name: str = None, package: str = None) -> Callable:
+    """Allows us to make an optional import
+
+    Args:
+        module (str): Name of the module we want to load eg yaml
+        name (str, optional): name of the function you want to load. Defaults to None.
+        package (str, optional): Name of the package incase it is different from the module name. Defaults to None.
+
+        eg:
+            from yaml import safe_load as load
+            would be
+            load = _optional_import_('yaml', 'safe_load', package='pyyaml')
+
+    Raises:
+        ValueError: If there was an import error for the module that was trying to be loaded
+
+    Returns:
+        Callable: Function to raise the exception
+    """
+    try:
+        module = importlib.import_module(module)
+        return module if name is None else getattr(module, name)
+    except ImportError as e:
+        if package is None:
+            package = module
+        msg = f"install the '{package}' package to make use of this feature"
+        import_error = e
+
+        def _failed_import(*args, **kwargs):
+            raise ValueError(msg) from import_error
+
+        return _failed_import

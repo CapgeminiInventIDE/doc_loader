@@ -1,8 +1,10 @@
+import os
+
 import numpy as np
 import pytest
 from PIL import Image
 from src.doc_loader.errors import *
-from src.doc_loader.utils import *
+from src.doc_loader.utils import pil_to_numpy, apply_exif_orientation
 
 from .utils import TEST_DATA_DIR
 

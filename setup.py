@@ -16,10 +16,11 @@ setuptools.setup(
     url="https://github.com/CapgeminiInventIDE/doc_loader",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: Mozilla Public License 2.0",
         "Operating System :: OS Independent",
     ],
     keywords=["image loading", "document handling", "PIL wrapper"],
     zip_safe=True,
     python_requires=">=3.6",
+    extras_require={"pdf_text_extract": ["PyMuPDF"],},
 )

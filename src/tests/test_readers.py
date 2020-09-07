@@ -153,7 +153,7 @@ PDF_CASES = [
 
 
 @pytest.mark.parametrize("path,max_num_pages,expected_pages,output_type,expected_page_count", TIFF_CASES)
-def test_read_tiff_file_storage(path, max_num_pages, expected_pages, output_type, expected_page_count):
+def test_read_tiff_file_upload(path, max_num_pages, expected_pages, output_type, expected_page_count):
     with open(path, "rb") as fp:
         upload_file = UploadFile(path, fp)
         page_count, imgs = read_tiff(upload_file, max_num_pages=max_num_pages, output_type=output_type)
@@ -166,7 +166,7 @@ def test_read_tiff_file_storage(path, max_num_pages, expected_pages, output_type
 
 
 @pytest.mark.parametrize("path,max_num_pages,expected_pages,output_type,expected_page_count", TIFF_CASES)
-def test_read_tiff_file_upload(path, max_num_pages, expected_pages, output_type, expected_page_count):
+def test_read_tiff_file_storage(path, max_num_pages, expected_pages, output_type, expected_page_count):
     with open(path, "rb") as fp:
         file_storage = FileStorage(fp, filename=path)
         page_count, imgs = read_tiff(file_storage, max_num_pages=max_num_pages, output_type=output_type)

@@ -57,5 +57,7 @@ class DocumentLoader(object):
             return loader(file, *args, **kwargs)
         except PasswordProtectedPDFException:
             raise
+        except FileNotFoundError:
+            raise
         except Exception as e:
             raise DocumentLoaderException(f"Corrupt file, failed to load: full error, {e}")

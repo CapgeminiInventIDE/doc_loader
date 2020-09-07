@@ -12,3 +12,7 @@ class PDFInfoException(Exception):
 
 class PDFInfoFileNotFoundException(Exception):
     pass
+
+
+class NoTextToExtractError(Exception):
+    pass

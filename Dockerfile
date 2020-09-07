@@ -4,7 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 RUN apt-get -y update && \
     apt-get -y install \
-    poppler-utils
+    poppler-utils \
+    mupdf 
 
 ADD requirements.txt .
 RUN pip install --upgrade pip && \
