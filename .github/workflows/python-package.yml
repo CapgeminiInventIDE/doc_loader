@@ -24,8 +24,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          apt-get -y update
-          apt-get -y install poppler-utils mupdf
+          sudo apt-get -y update
+          sudo apt-get -y install poppler-utils mupdf
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
