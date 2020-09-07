@@ -1,6 +1,6 @@
 ## Installation
 
-> Dependancies: poppler-utils
+> Dependencies: poppler-utils
 
 ```bash
 pip install doc_loader
@@ -10,7 +10,7 @@ pip install doc_loader
 
 Optionally you can also install the package with extra features
 
-> Dependancies: mupdf
+> Dependencies: mupdf
 
 ```bash
 pip install doc_loader[pdf_text_extract]
