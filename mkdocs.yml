@@ -17,12 +17,13 @@ nav:
   - Contributing: contributing.md
   - Code of Conduct: code_of_conduct.md
   - Changelog: changelog.md
-  - Roadmap: roadmap.md
+  # - Roadmap: roadmap.md
   - License: license.md
   - About Us: about_us.md
 
 theme:
   name: material
+  custom_dir: docs/overrides
   logo: assets/imgs/index.png
   favicon: https://www.capgemini.com/wp-content/themes/capgemini-komposite/assets/images/favicon.ico
 
@@ -67,7 +68,7 @@ extra:
     - icon: fontawesome/solid/globe
       link: https://www.capgemini.com/service/invent/
     - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/u/CapgeminiInventIDE
+      link: https://hub.docker.com/orgs/capgeminiinventide
     - icon: fontawesome/brands/discord
       link: https://discord.gg/rQcMtVE
     - icon: fontawesome/brands/instagram
