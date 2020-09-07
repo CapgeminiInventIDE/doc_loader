@@ -11,13 +11,16 @@ logger = logging.getLogger()
 
 
 def pdf_page_count(file: Union[str, IO]) -> int:
-    """Gets the page count for a pdf using pdf info on fastapi.UploadFile objects
-    
+    """Gets the page count for a pdf using pdf info
+
     Args:
-        file_storage (starlette.datastructures.UploadFile): PDF file to extract info from
-    
+        file (Union[str, IO]): File path or io object where the document is stored
+
+    Raises:
+        TypeError: If file is not str, pathlib.Path or io object with `read` method
+
     Returns:
-        int or None: Page count if successful or None if it fails
+        The page count inside the pdf
     """
     if hasattr(file, "file"):
         file = file.file
@@ -37,16 +40,13 @@ def pdf_page_count(file: Union[str, IO]) -> int:
 
 
 def pdfinfo_filestorage(file_storage: IO) -> Dict[str, str]:
-    """Wraps the functionality of pdfinfo to be used on fastapi.UploadFile objects
-    
-    Args:
-        file_storage (starlette.datastructures.UploadFile): PDF file to extract info from
+    """Wraps the functionality of pdfinfo to be used on fastapi.UploadFile and werkzeug.FileStorage objects
 
-    Raises:
-        PDFInfoException: If pdfinfo was unable to extract the number of pages from a document
-    
+    Args:
+        file_storage (IO): IO buffer PDF file to extract info from
+
     Returns:
-        dict:  metainfo in a dictionary.
+        The metainfo in a dictionary
     """
     if hasattr(file_storage, "file"):
         file_storage = file_storage.file
@@ -72,6 +72,7 @@ def pdfinfo(path: str) -> Dict[str, str]:
     Wraps command line utility pdfinfo to extract the PDF meta information using poppler-utils
 
     This function parses the text output that looks like this:
+    ```
         Title:          PUBLIC MEETING AGENDA
         Author:         Customer Support
         Creator:        Microsoft Word 2010
@@ -85,7 +86,7 @@ def pdfinfo(path: str) -> Dict[str, str]:
         File size:      104739 bytes
         Optimized:      no
         PDF version:    1.5
-    
+    ```
     Args:
         path (str): Path to file
     
@@ -95,7 +96,7 @@ def pdfinfo(path: str) -> Dict[str, str]:
         PasswordProtectedPDFException: If the pdf file was password protected
     
     Returns:
-        dict: metainfo in a dictionary.
+        The metainfo in a dictionary.
     """
 
     cmd = "/usr/bin/pdfinfo"

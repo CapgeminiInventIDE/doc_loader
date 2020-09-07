@@ -8,6 +8,7 @@ from PIL import Image
 
 from .errors import DocumentLoaderException, PasswordProtectedPDFException
 from .readers import read_jpg_png, read_pdf, read_tiff
+from .types import OutputType
 
 logger = logging.getLogger()
 
@@ -24,20 +25,25 @@ class DocumentLoader(object):
     }
 
     @staticmethod
-    def load(file: Union[str, IO], *args, **kwargs) -> Union[List[Image.Image], List[np.ndarray]]:
+    def load(
+        file: Union[str, IO], output_type: OutputType = OutputType.NP, max_num_pages: int = 1, dpi: int = 300
+    ) -> Union[List[Image.Image], List[np.ndarray]]:
         """Loads in a document with a valid extension from filestorage, uploadfile or from disk
 
         Args:
             file (Union[str, IO]): File path or io object where the document is stored
+            output_type (OutputType, optional): OutputType.NP or OutputType.PIL. Defaults to OutputType.NP.
+            max_num_pages (int, optional): Max number of pages to return, if set to negative then will use all pages in the document. Defaults to 1.
+            dpi (int, optional): dpi to set when converting PDF to an image. Defaults to 300.
 
         Raises:
-            TypeError: [description]
+            TypeError: If the given file is not a str, pathlib.Path or file-like object with a read method
             DocumentLoaderException: If the extension is not in the list of valid extensions
             DocumentLoaderException: If there was a problem loading - corrupt file
             PasswordProtectedPDFException: If the file was password protected
 
         Returns:
-            Union[List[Image.Image], List[np.ndarray]]: A list of PIL Images or numpy arrays
+            A list of PIL Images or numpy arrays
         """
         logger.info("Loading file sent in the request")
 
@@ -54,7 +60,7 @@ class DocumentLoader(object):
             raise DocumentLoaderException("Invalid extension type, cannot load this type of file")
 
         try:
-            return loader(file, *args, **kwargs)
+            return loader(file, output_type=output_type, max_num_pages=max_num_pages, dpi=dpi)
         except PasswordProtectedPDFException:
             raise
         except FileNotFoundError:

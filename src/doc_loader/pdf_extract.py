@@ -5,10 +5,10 @@ from typing import IO, Union, List, Callable, Tuple
 
 from .errors import NoTextToExtractError
 from .page_counter import pdf_page_count
-from .utils import _optional_import_
+from .utils import optional_import
 
 # Will lazily import the function open if available, if not will return a function that will raise an ImportException
-fitz_open = _optional_import_("fitz", name="open", package="PyMuPDF")
+fitz_open = optional_import("fitz", name="open", package="PyMuPDF")
 
 logger = logging.getLogger()
 
@@ -16,16 +16,19 @@ logger = logging.getLogger()
 def extract_text_pdf(
     path: Union[str, IO], max_num_pages: int = 1, postprocess_page: Callable = lambda x: x.strip(), *args, **kwargs
 ) -> Tuple[int, List[str]]:
-    """Reads the text within a readable PDF file
-        
+    """Extracts the text in every page within a readable PDF file
+
     Args:
-        path: Path of the PDF to be read
-        
+        path (Union[str, IO]): File path or io object where the document is stored
+        max_num_pages (int, optional): Max number of pages to return, if set to negative then will use all pages in the document. Defaults to 1.
+        postprocess_page (Callable, optional): Function to pass to postprocess the text on each page. Defaults to lambda x:x.strip().
+
+    Raises:
+        TypeError: If the given file is not a str, pathlib.Path or file-like object with a read method
+        NoTextToExtractError: If the function failed to extract any text (eg pdf with all images)
+
     Returns:
-        str: Text from the PDF file
-    
-    Raises: 
-        NoTextToExtractError: Error raised if there is no text to extract 
+        Number of pages in the, list of text in each page
     """
 
     if hasattr(path, "file"):

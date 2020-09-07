@@ -28,7 +28,7 @@ def read_tiff(
         TypeError: If output_type is not OutputType.NP or OutputType.PIL
 
     Returns:
-        Tuple[int, Union[List[np.ndarray], List[PIL.Image.Image]]]:  number of pages in the image, and a list of PIL Images or numpy arrays
+        The number of pages in the image, and a list of PIL Images or numpy arrays
     """
     if hasattr(path, "file"):  # Added for starlette.Uploadfile
         path = path.file
@@ -63,7 +63,7 @@ def read_pdf(
     *args,
     **kwargs,
 ) -> Tuple[int, Union[List[np.ndarray], List[Image.Image]]]:
-    """Reads in a PDF and converts it into a list of PIL images, only if given PDF is not password protected
+    """Reads in a PDF and converts it into a list of PIL.Images/np.ndarray, only if given PDF is not password protected
 
     Args:
         path (Union[str, IO]): File path or object where the image is stored
@@ -77,7 +77,7 @@ def read_pdf(
         PasswordProtectedPDFException: If the pdf was password protected
 
     Returns:
-        Tuple[int, Union[List[np.ndarray], List[Image.Image]]]: number of pages in the image, and a list of PIL Images or numpy arrays
+        The number of pages in the image, and a list of PIL Images or numpy arrays
     """
     if hasattr(path, "file"):
         path = path.file
@@ -124,7 +124,7 @@ def read_pdf(
 def read_jpg_png(
     path: Union[str, IO], output_type: OutputType = OutputType.NP, *args, **kwargs
 ) -> Tuple[int, Union[List[np.ndarray], List[Image.Image]]]:
-    """Reads in a JPG or PNG image and converts it into a list of one PIL image
+    """Reads in a JPG or PNG image and converts it into a list of one PIL.Image/np.ndarray
 
     Args:
         path (Union[str, IO]): File path or object where the image is stored
@@ -134,7 +134,7 @@ def read_jpg_png(
         TypeError: If output_type is not OutputType.NP or OutputType.PIL
 
     Returns:
-        Tuple[int, Union[List[np.ndarray], List[Image.Image]]]: number of pages in the image, and a list of PIL Images or numpy arrays
+        The number of pages in the image, and a list of PIL Images or numpy arrays
     """
     if hasattr(path, "file"):  # Added for starlette.Uploadfile
         path = path.file

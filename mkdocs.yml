@@ -1,0 +1,75 @@
+site_name: "doc_loader"
+site_description: "Given werkzeug.FileStorage, fastapi.UploadFile or str file path as input it converts any image files(.pdf, .jpg, .png, .tiff) into list of PIL or numpy objects "
+site_url: "https://CapgeminiInventIDE.github.io/doc_loader"
+repo_url: "https://github.com/CapgeminiInventIDE/doc_loader"
+repo_name: "CapgeminiInventIDE/doc_loader"
+
+nav:
+  - Getting Started: index.md
+  - Reference:
+      - doc_loader.py: reference/doc_loader.md
+      - errors.py: reference/errors.md
+      - page_counter.py: reference/page_counter.md
+      - pdf_extract.py: reference/pdf_extract.md
+      - readers.py: reference/readers.md
+      - types.py: reference/types.md
+      - utils.py: reference/utils.md
+  - Contributing: contributing.md
+  - Code of Conduct: code_of_conduct.md
+  - Changelog: changelog.md
+  # - Roadmap: roadmap.md
+  - License: license.md
+  - About Us: about_us.md
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  logo: assets/imgs/index.png
+  favicon: https://www.capgemini.com/wp-content/themes/capgemini-komposite/assets/images/favicon.ico
+
+extra_css:
+  - assets/css/styles.css
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed
+  - toc:
+      permalink: "¤"
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          setup_commands:
+            - import sys
+            - sys.path.append("src")
+          rendering:
+            show_root_heading: no
+            show_if_no_docstring: no
+      watch:
+        - src/doc_loader
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/CapgeminiInventIDE
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/capgemini-invent
+    - icon: fontawesome/solid/globe
+      link: https://www.capgemini.com/service/invent/
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/orgs/capgeminiinventide
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/rQcMtVE
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/capgeminiinvent/
