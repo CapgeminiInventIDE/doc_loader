@@ -115,4 +115,4 @@ To contribute to doc_loader, follow these steps:
 
 ## Contact
 
-If you want to contact use you can reach us at andy.challis@capgemini.com or jeremiah.mannings@capgemini.com
+If you want to contact us you can reach us at andy.challis@capgemini.com or jeremiah.mannings@capgemini.com
