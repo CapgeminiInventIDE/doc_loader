@@ -31,13 +31,13 @@ class DocumentLoader(object):
             file (Union[str, IO]): File path or io object where the document is stored
 
         Raises:
-            TypeError: [description]
+            TypeError: If the given file is not a str, pathlib.Path or file-like object with a read method
             DocumentLoaderException: If the extension is not in the list of valid extensions
             DocumentLoaderException: If there was a problem loading - corrupt file
             PasswordProtectedPDFException: If the file was password protected
 
         Returns:
-            Union[List[Image.Image], List[np.ndarray]]: A list of PIL Images or numpy arrays
+            A list of PIL Images or numpy arrays
         """
         logger.info("Loading file sent in the request")
 

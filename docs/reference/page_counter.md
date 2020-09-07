@@ -1,0 +1,1 @@
+::: doc_loader.page_counter

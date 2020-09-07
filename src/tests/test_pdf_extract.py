@@ -13,7 +13,7 @@ try:
 except:
     pass
 
-from src.doc_loader.utils import _optional_import_
+from src.doc_loader.utils import optional_import
 from src.doc_loader.pdf_extract import extract_text_pdf
 from .utils import TEST_DATA_DIR
 from src.doc_loader.errors import NoTextToExtractError
@@ -27,7 +27,7 @@ PDF_CG_CASES = [
 
 @pytest.mark.parametrize("path", [(TEST_DATA_DIR / "is-doc-has-text.pdf")])
 def test_fitz_open_install(path):
-    fitz_open = _optional_import_("fitz", name="open", package="PyMuPDF")
+    fitz_open = optional_import("fitz", name="open", package="PyMuPDF")
     if should_test_extract_text_pdf:
         with does_not_raise():
             fitz_open(path)

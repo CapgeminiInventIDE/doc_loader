@@ -6,8 +6,14 @@ from PIL import Image
 
 
 def apply_exif_orientation(image: Image.Image) -> Image.Image:
-    """
-    Applies the exif orientation correctly.
+    """Applies the exif orientation correctly.
+    
+    Args:
+        image (Image.Image): a PIL image
+    Returns:
+        The PIL image with exif orientation applied, if applicable
+
+    ```
     This code exists per the bug:
       https://github.com/python-pillow/Pillow/issues/3973
     with the function `ImageOps.exif_transpose`. The Pillow source raises errors with
@@ -15,10 +21,7 @@ def apply_exif_orientation(image: Image.Image) -> Image.Image:
     Function based on:
       https://github.com/wkentaro/labelme/blob/v4.5.4/labelme/utils/image.py#L59
       https://github.com/python-pillow/Pillow/blob/7.1.2/src/PIL/ImageOps.py#L527
-    Args:
-        image (Image.Image): a PIL image
-    Returns:
-        (Image.Image): the PIL image with exif orientation applied, if applicable
+    ```
     """
     if not hasattr(image, "getexif"):
         return image
@@ -57,12 +60,12 @@ def pil_to_numpy(image: Image.Image) -> np.ndarray:
         image (Image.Image): A PIL image to convert to numpy
 
     Returns:
-        np.ndarray: Image 
+        The PIL image converted to a numpy array
     """
     return np.asarray(image.convert("RGB"))
 
 
-def _optional_import_(module: str, name: str = None, package: str = None) -> Callable:
+def optional_import(module: str, name: str = None, package: str = None) -> Callable:
     """Allows us to make an optional import
 
     Args:
@@ -70,16 +73,17 @@ def _optional_import_(module: str, name: str = None, package: str = None) -> Cal
         name (str, optional): name of the function you want to load. Defaults to None.
         package (str, optional): Name of the package incase it is different from the module name. Defaults to None.
 
-        eg:
-            from yaml import safe_load as load
-            would be
-            load = _optional_import_('yaml', 'safe_load', package='pyyaml')
-
+    Example:
+        ```python
+        from yaml import safe_load as load
+        # would be
+        load = optional_import('yaml', 'safe_load', package='pyyaml')
+        ```
     Raises:
         ValueError: If there was an import error for the module that was trying to be loaded
 
     Returns:
-        Callable: Function to raise the exception
+        Either a function to raise the exception or the function from the module
     """
     try:
         module = importlib.import_module(module)
