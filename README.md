@@ -37,7 +37,8 @@ pip install doc_loader
 
 * [Pillow](https://pypi.org/project/Pillow/)
 * [numpy](https://pypi.org/project/numpy/)
-* [pdf2image](https://pypi.org/project/pdf2image/)
+* [pdf2image](https://pypi.org/project/pdf2image/) + popplerutils
+* OPTIONAL [PyMuPDF](https://pypi.org/project/PyMuPDF/) + MuPDF
 
 ## License
 
