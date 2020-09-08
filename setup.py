@@ -16,7 +16,7 @@ setuptools.setup(
     url="https://github.com/CapgeminiInventIDE/doc_loader",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Mozilla Public License 2.0",
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Operating System :: OS Independent",
     ],
     keywords=["image loading", "document handling", "PIL wrapper"],
