@@ -3,7 +3,7 @@ import logging
 import pathlib
 from typing import IO, Union, List, Callable, Tuple
 
-from .errors import NoTextToExtractError
+from .errors import NoTextToExtractError, PasswordProtectedPDFException
 from .page_counter import pdf_page_count
 from .utils import optional_import
 
@@ -25,6 +25,7 @@ def extract_text_pdf(
 
     Raises:
         TypeError: If the given file is not a str, pathlib.Path or file-like object with a read method
+        PasswordProtectedPDFException: If the pdf was password protected
         NoTextToExtractError: If the function failed to extract any text (eg pdf with all images)
 
     Returns:
@@ -51,6 +52,9 @@ def extract_text_pdf(
         document = fitz_open(str(path), filetype="pdf")
     else:
         raise TypeError("path must be string or io object")
+
+    if document.needsPass:
+        raise PasswordProtectedPDFException(f"Password protected PDF file path detected, PDF file path = {path}")
 
     # Reading file and extracting text
     text = []
