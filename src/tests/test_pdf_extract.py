@@ -16,12 +16,12 @@ except:
 from src.doc_loader.utils import optional_import
 from src.doc_loader.pdf_extract import extract_text_pdf
 from .utils import TEST_DATA_DIR
-from src.doc_loader.errors import NoTextToExtractError
+from src.doc_loader.errors import NoTextToExtractError, PasswordProtectedPDFException
 
 PDF_CG_CASES = [
-    (TEST_DATA_DIR / "is-doc-has-text.pdf", 10),
-    (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10),
-    (TEST_DATA_DIR / "not-doc-no-text.pdf", 1),
+    (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, -1,),
+    (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 5,),
+    (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 1,),
 ]
 
 
@@ -55,23 +55,21 @@ if should_test_extract_text_pdf:
         "PrintNode \nMultipage Test End\n10",
     ]
 
+    PDF_CG_CASES_ERRORS = [
+        (TEST_DATA_DIR / "is-doc-has-text.pdf", pytest.raises(NoTextToExtractError)),
+        (TEST_DATA_DIR / "not-doc-no-text-locked.pdf", pytest.raises(PasswordProtectedPDFException)),
+        (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", does_not_raise()),
+    ]
+
     @pytest.mark.parametrize(
-        "path,expectation",
-        [
-            (TEST_DATA_DIR / "is-doc-has-text.pdf", pytest.raises(NoTextToExtractError)),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", does_not_raise()),
-        ],
+        "path,expectation", PDF_CG_CASES_ERRORS,
     )
     def test_extract_text_pdf_file_path_error(path, expectation):
         with expectation:
             extract_text_pdf(path, max_num_pages=-1)
 
     @pytest.mark.parametrize(
-        "path,expectation",
-        [
-            (TEST_DATA_DIR / "is-doc-has-text.pdf", pytest.raises(NoTextToExtractError)),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", does_not_raise()),
-        ],
+        "path,expectation", PDF_CG_CASES_ERRORS,
     )
     def test_extract_text_pdf_file_storage_error(path, expectation):
         with expectation, open(path, "rb") as fp:
@@ -79,11 +77,7 @@ if should_test_extract_text_pdf:
             extract_text_pdf(file_storage, max_num_pages=-1)
 
     @pytest.mark.parametrize(
-        "path,expectation",
-        [
-            (TEST_DATA_DIR / "is-doc-has-text.pdf", pytest.raises(NoTextToExtractError)),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", does_not_raise()),
-        ],
+        "path,expectation", PDF_CG_CASES_ERRORS,
     )
     def test_extract_text_pdf_file_upload_error(path, expectation):
         with expectation, open(path, "rb") as fp:
@@ -91,12 +85,7 @@ if should_test_extract_text_pdf:
             extract_text_pdf(upload_file, max_num_pages=-1)
 
     @pytest.mark.parametrize(
-        "path,expected_page_count,max_num_pages",
-        [
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, -1,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 5,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 1,),
-        ],
+        "path,expected_page_count,max_num_pages", PDF_CG_CASES,
     )
     def test_extract_text_pdf_file_path(path, expected_page_count, max_num_pages):
         if (len(cg_text) < max_num_pages) or (max_num_pages < 0):
@@ -110,12 +99,7 @@ if should_test_extract_text_pdf:
         assert extracted_text == cg_text[:max_index]
 
     @pytest.mark.parametrize(
-        "path,expected_page_count,max_num_pages",
-        [
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, -1,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 5,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 1,),
-        ],
+        "path,expected_page_count,max_num_pages", PDF_CG_CASES,
     )
     def test_extract_text_pdf_file_storage(path, expected_page_count, max_num_pages):
         if (len(cg_text) < max_num_pages) or (max_num_pages < 0):
@@ -131,12 +115,7 @@ if should_test_extract_text_pdf:
         assert extracted_text == cg_text[:max_index]
 
     @pytest.mark.parametrize(
-        "path,expected_page_count,max_num_pages",
-        [
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, -1,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 5,),
-            (TEST_DATA_DIR / "is-doc-has-cgtext.pdf", 10, 1,),
-        ],
+        "path,expected_page_count,max_num_pages", PDF_CG_CASES,
     )
     def test_extract_text_pdf_file_upload(path, expected_page_count, max_num_pages):
         if (len(cg_text) < max_num_pages) or (max_num_pages < 0):
