@@ -3,7 +3,7 @@
 > Dependencies: poppler-utils
 
 ```bash
-pip install doc_loader
+pip install doc-loader
 ```
 
 ### Optional Installs
@@ -13,7 +13,7 @@ Optionally you can also install the package with extra features
 > Dependencies: mupdf
 
 ```bash
-pip install doc_loader[pdf_text_extract]
+pip install doc-loader[pdf_text_extract]
 ```
 
 This plugin allows you to get text from a searchable pdf
