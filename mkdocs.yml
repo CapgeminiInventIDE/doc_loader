@@ -26,9 +26,14 @@ theme:
   custom_dir: docs/overrides
   logo: assets/imgs/index.png
   favicon: assets/imgs/favicon.ico
+  palette:
+    scheme: youtube
 
 extra_css:
   - assets/css/styles.css
+
+extra_javascript:
+  - assets/js/theme.js
 
 markdown_extensions:
   - admonition
