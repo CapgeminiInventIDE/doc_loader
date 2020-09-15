@@ -6,6 +6,7 @@
 
 # doc_loader
 
+[![documentation](https://img.shields.io/badge/docs-mkdocs%20material-blue.svg?style=flat)](https://capgeminiinventide.github.io/doc_loader/index.html)
 [![Discord](https://img.shields.io/discord/752353026366242846.svg?label=Join%20us%20on%20Discord&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/rQcMtVE)
 [![PyPI Latest Release](https://img.shields.io/pypi/v/doc_loader.svg)](https://pypi.org/project/doc_loader/)
 [![License](https://img.shields.io/pypi/l/doc_loader.svg)](https://github.com/CapgeminiInventIDE/doc_loader/blob/master/LICENSE)

@@ -1,7 +1,5 @@
-name: Publish docs via GitHub Pages
-on:
-  release:
-    types: [created]
+name: Publish docs via GitHub Pages Manually
+on: [workflow_dispatch]
 
 jobs:
   build:

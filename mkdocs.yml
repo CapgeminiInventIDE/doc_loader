@@ -25,7 +25,9 @@ theme:
   name: material
   custom_dir: docs/overrides
   logo: assets/imgs/index.png
-  favicon: https://www.capgemini.com/wp-content/themes/capgemini-komposite/assets/images/favicon.ico
+  favicon: assets/imgs/favicon.ico
+  palette:
+    scheme: youtube
 
 extra_css:
   - assets/css/styles.css
@@ -34,6 +36,9 @@ extra_css:
 extra_javascript:
   - assets/js/termynal.js
   - assets/js/custom.js
+
+extra_javascript:
+  - assets/js/theme.js
 
 markdown_extensions:
   - admonition

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="doc_loader",
-    version="0.1.0",
+    version="0.1.2",
     author="Capgemini Invent IDE",
     description="Given werkzeug.FileStorage, fastapi.UploadFile or str file path as input it converts any image files(.pdf, .jpg, .png, .tiff) into list of PIL or numpy objects",
     long_description=long_description,
@@ -16,7 +16,7 @@ setuptools.setup(
     url="https://github.com/CapgeminiInventIDE/doc_loader",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: Mozilla Public License 2.0",
+        "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
         "Operating System :: OS Independent",
     ],
     keywords=["image loading", "document handling", "PIL wrapper"],
