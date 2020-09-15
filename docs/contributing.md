@@ -9,10 +9,21 @@ Nothing easier!
 
 Fork and clone the repository, then:
 
-```bash
-docker-compose up -d
-docker exec -it doc-loader bash
+<div class="termy">
+
+```console
+$ docker-compose up -d
+Installing requirements
+---> 100%
+
+Creating doc-loader ... done
+Attaching to doc-loader
+
+$ docker exec -it doc-loader bash
+root:/opt/working#
 ```
+
+</div>
 
 That's it!
 

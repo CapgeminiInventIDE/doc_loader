@@ -29,6 +29,11 @@ theme:
 
 extra_css:
   - assets/css/styles.css
+  - assets/css/termynal.css
+
+extra_javascript:
+  - assets/js/termynal.js
+  - assets/js/custom.js
 
 markdown_extensions:
   - admonition
