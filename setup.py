@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="doc_loader",
-    version="0.1.2",
+    version="0.1.3",
     author="Capgemini Invent IDE",
     description="Given werkzeug.FileStorage, fastapi.UploadFile or str file path as input it converts any image files(.pdf, .jpg, .png, .tiff) into list of PIL or numpy objects",
     long_description=long_description,
