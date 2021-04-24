@@ -132,4 +132,4 @@ The result is a coordinated approach to transformation, enabling businesses to c
 
 ## We're Hiring!
 
-Do you want to be part of the team that builds doc_loader and [other great products](https://github.com/CapgeminiInventIDE) at Capgemini Invent? If so, you're in luck! Capgemini Invent is currently hiring Data Scientists who love using data to drive their decisions. Take a look at [our open positions](https://www.capgemini.com/careers/job-search/?search_term=capgemini+invent) and see if you're a fit.
+Do you want to be part of the team that builds doc_loader and [other great products](https://github.com/CapgeminiInventIDE) at Capgemini Invent? If so, you're in luck! Capgemini Invent is currently hiring Data/Decision Scientists who love using data to drive their decisions. Take a look at [our open positions](https://www.capgemini.com/careers/job-search/?search_term=capgemini+invent) and see if you're a fit.
